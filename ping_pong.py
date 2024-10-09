@@ -35,7 +35,8 @@ class Player(GameSprite):
 
 class Ball(GameSprite):
     def update(self):
-        ...
+        self.rect.x += self.speed
+        self.rect.y -= self.speed
 
 window = display.set_mode((win_width, win_heidth))
 display.set_caption("Пинг понг")
@@ -48,7 +49,7 @@ finish = False
 
 player1 = Player("racket.png", 620, 250, 5, 65, 125)
 player2 = Player("racket.png", 15, 250, 5, 65, 125)
-ball = Ball("ball.png", 350, 250, 7, 40, 40)
+ball = Ball("ball.png", 350, 250, 4, 40, 40)
 background = transform.scale(image.load("background.jpg"), (win_width, win_heidth))
 # mixer.music.load('space.ogg')
 # mixer.music.set_volume(0.1)
@@ -67,6 +68,7 @@ while game:
             player2.reset()
             player2.update_l()
             ball.reset()
+            ball.update()
             
     display.update()
     clock.tick(FPS)
